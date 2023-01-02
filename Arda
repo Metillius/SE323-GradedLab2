@@ -1,0 +1,173 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
+public  class Arda {
+}
+
+abstract class ProLan{
+
+    private String languageName;
+    private double lastVersion;
+
+
+    public void scan(){
+
+        System.out.println("Prolan scanner is running...");
+    }
+
+    public void parse(){
+
+        System.out.println("Prolan parser is running...");
+
+    }
+
+    public void generateCode(){
+
+        System.out.println("Prolan code generator is running...");
+
+    }
+
+    public void read(){
+
+
+        try {
+            Scanner scanner = new Scanner(new File("C:/Users/ML201/Desktop/file.txt"));//You can change this file path
+
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void compile(){
+        scan();
+        parse();
+        generateCode();
+    }
+
+
+}
+
+class Java extends ProLan{
+    public void scan(){
+
+        System.out.println("Java scanner is running...");
+    }
+
+    public void parse(){
+
+        System.out.println("Java parser is running...");
+
+    }
+
+    public void generateCode(){
+
+        System.out.println("Java code generator is running...");
+
+    }
+
+}
+
+class Beavis extends ProLan{
+    public void scan(){
+
+        System.out.println("Beavis scanner is running...");
+    }
+
+    public void parse(){
+
+        System.out.println("Beavis parser is running...");
+
+    }
+
+    public void generateCode(){
+
+        System.out.println("Beavis code generator is running...");
+
+    }
+
+}
+
+
+class Daria extends ProLan{
+    public void scan(){
+
+        System.out.println("Daria scanner is running...");
+    }
+
+    public void parse(){
+
+        System.out.println("Daria parser is running...");
+
+    }
+
+    public void generateCode(){
+
+        System.out.println("Daria code generator is running...");
+
+    }
+
+}
+
+class main{
+
+    BufferedReader buffer =null;
+    String strLine = "";
+
+    public String detect(){
+
+        int n = 0; // The line number
+        try{
+            String line = Files.readAllLines(Paths.get("C:/Users/ML201/Desktop/file.txt")).get(n);//You can change this file path
+            System.out.println(line);
+            return line;
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+        main a = new main();
+
+    /*
+        Beavis beavis = new Beavis();
+        Daria daria = new Daria();
+    */
+        Java java = new Java();
+        java.compile();
+
+
+
+        String temp = a.detect();
+
+        if (temp == "#LANG=JAVA"){
+           Java lang = new Java();
+           lang.read();
+           lang.compile();
+        }
+        else if (temp == "#LANG=Beavis"){
+            Beavis lang = new Beavis();
+            lang.read();
+            lang.compile();
+        }
+        else if (temp == "#LANG=Daria"){
+            Daria lang = new Daria();
+            lang.read();
+            lang.compile();
+        }
+
+
+
+
+    }
+}
